@@ -1,0 +1,23 @@
+services:
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_DB_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_DB_PWD}
+  mongo-express:
+    image: mongo-express
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_AUTH_USERNAME: ${MONGO_DB_USERNAME}
+      ME_CONFIG_MONGODB_AUTH_PASSWORD: ${MONGO_DB_PWD}
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_DB_USERNAME}:${MONGO_DB_PWD}@mongo:27017/
+  test-app:
+    image: testapp
+    ports:
+      - "5050:5050"
+    environment:
+      MONGO_DB_USERNAME: ${MONGO_DB_USERNAME}
+      MONGO_DB_PWD: ${MONGO_DB_PWD}
