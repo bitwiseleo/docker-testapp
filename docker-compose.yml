@@ -15,7 +15,8 @@ services:
       ME_CONFIG_MONGODB_AUTH_PASSWORD: ${MONGO_DB_PWD}
       ME_CONFIG_MONGODB_URL: mongodb://${MONGO_DB_USERNAME}:${MONGO_DB_PWD}@mongo:27017/
   test-app:
-    image: testapp
+    build: .
+    image: bitwiseleo/docker-test-app:1.0.0
     ports:
       - "5050:5050"
     environment:
