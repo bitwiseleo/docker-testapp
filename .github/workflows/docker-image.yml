@@ -12,12 +12,15 @@ jobs:
       
       - name: Checkout the code
         uses: actions/checkout@v4
+
+      - name: Set Docker tag
+        run: echo "DOCKER_TAG=$(date +%s)" >> $GITHUB_ENV
       
       - name: Build Docker Image
         run: |
-          docker build ./ -t bitwiseleo/docker-test-app:latest
+          docker build ./ -t bitwiseleo/docker-test-app:${DOCKER_TAG}
       
       - name: Push Docker Image to Docker Hub
         run: |
           docker login -u bitwiseleo -p ${{secrets.DOCKER_HUB_TOKEN }}
-          docker push bitwiseleo/docker-test-app:latest
+          docker push bitwiseleo/docker-test-app:${DOCKER_TAG}
