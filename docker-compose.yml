@@ -18,7 +18,7 @@ services:
     build: .
     image: bitwiseleo/docker-test-app:1.0.1
     ports:
-      - ${APP_PORT}:${APP_PORT}
+      - ${APP_PORT}:5050
     environment:
       MONGO_DB_USERNAME: ${MONGO_DB_USERNAME}
       MONGO_DB_PWD: ${MONGO_DB_PWD}
