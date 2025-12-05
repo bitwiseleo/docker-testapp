@@ -5,7 +5,3 @@
 # Environment variables
 
 .env
-
-# Dockerfile
-
-Dockerfile
