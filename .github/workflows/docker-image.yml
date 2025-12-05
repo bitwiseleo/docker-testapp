@@ -1,0 +1,23 @@
+name: Build and publish Docker Image to Docker Hub
+
+on:
+  [workflow_dispatch]
+
+jobs:
+
+  publish_image:
+    runs-on: ubuntu-latest
+
+    steps:
+      
+      - name: Checkout the code
+        uses: actions/checkout@v4
+      
+      - name: Build Docker Image
+        run: |
+          docker build ./ -t bitwiseleo/docker-test-app:$(date +%s)
+      
+      - name: Push Docker Image to Docker Hub
+        run: |
+          docker login -u bitwiseleo -p ${{secrets.DOCKER_HUB_TOKEN }}
+          docker push bitwiseleo/docker-test-app:$(date +%s)
