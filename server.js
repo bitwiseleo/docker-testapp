@@ -32,7 +32,7 @@ app.post("/addUser", async (req, res) => {
   await client.connect(MONGO_URL);
   console.log("Connected successfully to server");
 
-  const db = client.db("docker_test_app-db);
+  const db = client.db("docker_test_app-db");
   const data = await db.collection("users").insertOne(userObj);
   console.log(data);
   console.log("data inserted in DB");
