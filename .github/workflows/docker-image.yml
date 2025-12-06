@@ -25,7 +25,7 @@ jobs:
 
       - name: Run with updated tag
         run: |
-          APP_IMAGE_TAG=${{ env.DOCKER_TAG }} docker-compose up -d
+          APP_IMAGE_TAG=${{ env.DOCKER_TAG }} docker compose up -d
       
       - name: Push Docker Image to Docker Hub
         run: |
